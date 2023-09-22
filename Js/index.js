@@ -17,6 +17,39 @@ sBton.addEventListener("click", (e)=>{
     showData();
 })
 
+// Creating A Logic For Copy Credentials :: 
+const copyData = (txt)=>{
+    navigator.clipboard.writeText(txt);
+    document.getElementById("cText").style.display = "inline";
+    setTimeout(()=>{
+        document.getElementById("cText").style.display = "none";
+    }, 1000);
+}
+
+// Creating A Logic For Converting The Password Into Asterisk :: 
+const starPassword = (pass)=>{
+    let str = "";
+    for (let index = 0; index < pass.length; index++) {
+        str += "*";
+    }
+    return str;
+}
+
+// Creating A Logic For Deleting The Data From Table ::
+const deleteData = (website)=>{
+    let confirmation = confirm(`Are You Sure To Delete ${website}'s Credentials`);
+    if(confirmation == true){ 
+    console.log("click delete");
+    let data = localStorage.getItem("passwords");
+    let arr = JSON.parse(data);
+    arrUpdate = arr.filter((e)=>{
+        return e.website != website;
+    })
+    localStorage.setItem("passwords", JSON.stringify(arrUpdate));
+    }
+    showData();
+}
+
 // Creating A Logic For Parsing The Data In Table :: 
 const showData = ()=>{
 
@@ -41,7 +74,7 @@ const showData = ()=>{
         stng += `<tr>
         <td>${element.website}</td>
         <td>${element.username}</td>
-        <td>${element.password} &nbsp;<img class="cIcon" src="/Images/copy.svg" alt="copy text" width="15px" height="15px" title="copy to clipboard" onclick="copyData('${element.password}')"></td>
+        <td>${starPassword(element.password)} &nbsp;<img class="cIcon" src="/Images/copy.svg" alt="copy text" width="15px" height="15px" title="copy to clipboard" onclick="copyData('${element.password}')"></td>
         <td><button class="delBton" onclick="deleteData('${element.website}')">Delete</button></td>
         </tr>`
         }   
@@ -52,27 +85,5 @@ const showData = ()=>{
     password.value = "";
 }
 showData();
-
-// Creating A Logic For Copy Credentials :: 
-const copyData = (txt)=>{
-    navigator.clipboard.writeText(txt);
-    document.getElementById("cText").style.display = "inline";
-    setTimeout(()=>{
-        document.getElementById("cText").style.display = "none";
-    }, 1000);
-}
-
-// Creating A Logic For Deleting The Data From Table ::
-const deleteData = (website)=>{
-    console.log("click delete");
-    let data = localStorage.getItem("passwords");
-    let arr = JSON.parse(data);
-    arrUpdate = arr.filter((e)=>{
-        return e.website != website;
-    })
-    localStorage.setItem("passwords", JSON.stringify(arrUpdate));
-    confirm(`Are You Sure To Delete ${website}'s Credentials`);
-    showData();
-}
 
 // ............................................................ 
