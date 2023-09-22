@@ -3,37 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/CSS/index.css">
-    <title>Document</title>
+    <title>Keep Your Password Safe & Encrypted With Us</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>I am Navigation !!</h1>
-        </nav>
-    </header>
+    <!-- This Design Is Without Navigation :: -->
     <main>
+        <section> 
+            <div class="box">
+                <p class="title"><a href="/index.html"><img class="logo" src="/Images/icon.png" alt=""></a>Password Bank</p>
+                <p class="stitle">Password Bank is your online password manager. For more help you can <a class="tagA" href="/index.html">Click Here</a></p> 
+            </div>
+        </section>
+        <section>
+            <form action="" method="POST">
+                <div class="box0">
+                    <div>
+                        <label for="website">Website</label>
+                            <input type="text" placeholder="example.com" id="website" required>
+                    </div>
+                    <div>
+                        <label for="username">Username</label>
+                            <input type="text" placeholder="example@email.com" id="username" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                            <input type="text" placeholder="atleast 6 characters" id="password" required>
+                    </div>
+                    <div>
+                        <button id="sBton">Add Now</button>
+                    </div>
+                </div>
+            </form>
+        </section>
         <section>
             <div class="box1">
-                <table>
+                <table id="myTable">
+                    <caption>Your Details</caption>
                     <tr>
                         <th>Website</th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>mail dekho</td>
-                        <td>email@email.com</td>
-                        <td>12345</td>
-                        <td><button id="delBton">Delete</button></td>
-                    </tr>
                 </table>
             </div>
         </section>
     </main>
     <footer>
-        <h1>I am Footer !!</h1>
+        <p>Password Bank</p>
+        <p>2023 &copy;All Rights Reserved</p>
     </footer>
 </body>
 <script src="/Js/index.js"></script>

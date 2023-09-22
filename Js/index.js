@@ -1,3 +1,72 @@
-// Writing A Logic For Saving The Password :: 
+// Creating A Logic For Saving The Password :: 
+sBton.addEventListener("click", (e)=>{
+    e.preventDefault();
 
-console.log("Hey I Am Js ::")
+    let passwords = localStorage.getItem("passwords");
+
+    if(passwords == null){
+        let json = [];
+        json.push({website:website.value, username:username.value, password:password.value});
+        localStorage.setItem("passwords", JSON.stringify(json));
+    }
+    else{
+        let json = JSON.parse(localStorage.getItem("passwords"));
+        json.push({website:website.value, username:username.value, password:password.value});
+        localStorage.setItem("passwords", JSON.stringify(json));
+    }
+    showData();
+})
+
+// Creating A Logic For Parsing The Data In Table :: 
+const showData = ()=>{
+
+    let myTbl = document.getElementById("myTable");
+    let data = localStorage.getItem("passwords");
+    
+    if(data == null){
+        myTbl.innerHTML = "Local Storage Is Empty !!"
+    }
+    else{
+    myTbl.innerHTML = `<tr>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                        </tr>`
+    let arr = JSON.parse(data);
+    let stng = "";
+    for (let index = 0; index < arr.length; index++) {
+        const element = arr[index];
+        
+        stng += `<tr>
+        <td>${element.website}</td>
+        <td>${element.username}</td>
+        <td>${element.password}</td>
+        <td><button class="delBton" onclick="deleteData('${element.website}')">Delete</button></td>
+        </tr>`
+        }   
+            myTbl.innerHTML = (myTbl.innerHTML + stng);
+    }
+    website.value = "";
+    username.value = "";
+    password.value = "";
+}
+showData();
+
+// Creating A Logic For Copy Credentials :: 
+
+
+// Creating A Logic For Deleting The Data From Table ::
+const deleteData = (website)=>{
+    console.log("click delete");
+    let data = localStorage.getItem("passwords");
+    let arr = JSON.parse(data);
+    arrUpdate = arr.filter((e)=>{
+        return e.website != website;
+    })
+    localStorage.setItem("passwords", JSON.stringify(arrUpdate));
+    confirm(`Are You Sure To Delete ${website}'s Credentials`);
+    showData();
+}
+
+// ............................................................ 
