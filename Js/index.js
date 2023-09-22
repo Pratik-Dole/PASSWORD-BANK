@@ -41,7 +41,7 @@ const showData = ()=>{
         stng += `<tr>
         <td>${element.website}</td>
         <td>${element.username}</td>
-        <td>${element.password}</td>
+        <td>${element.password} &nbsp;<img class="cIcon" src="/Images/copy.svg" alt="copy text" width="15px" height="15px" title="copy to clipboard" onclick="copyData('${element.password}')"></td>
         <td><button class="delBton" onclick="deleteData('${element.website}')">Delete</button></td>
         </tr>`
         }   
@@ -54,7 +54,13 @@ const showData = ()=>{
 showData();
 
 // Creating A Logic For Copy Credentials :: 
-
+const copyData = (txt)=>{
+    navigator.clipboard.writeText(txt);
+    document.getElementById("cText").style.display = "inline";
+    setTimeout(()=>{
+        document.getElementById("cText").style.display = "none";
+    }, 1000);
+}
 
 // Creating A Logic For Deleting The Data From Table ::
 const deleteData = (website)=>{

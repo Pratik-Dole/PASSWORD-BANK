@@ -108,6 +108,7 @@ input::placeholder{
 caption{
     font-size: 25px;
     margin: 10px;
+    color: white;
 }
 
 table, th, td{
@@ -117,10 +118,24 @@ table, th, td{
 
 th, td{
     padding: 15px;
+    text-align: center;
 }
 
 table th, table td{
     font-size: 20px;
+}
+
+.cIcon{
+    background-color: white;
+    filter: invert(100%);
+    cursor: pointer;
+}
+
+#cText{
+    display: none;
+    margin-bottom: 10px;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .delBton{
